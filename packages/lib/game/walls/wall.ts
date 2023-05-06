@@ -1,3 +1,3 @@
-export default abstract class UnoCard {
+export default abstract class Wall {
 
 }
