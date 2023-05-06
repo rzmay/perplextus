@@ -1,0 +1,824 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"BucketLocation": {
+				"type": "string",
+				"enum": [
+					"northamerica-northeast1",
+					"northamerica-northeast2",
+					"us-central1",
+					"us-east1",
+					"us-east4",
+					"us-east5",
+					"us-south1",
+					"us-west1",
+					"us-west2",
+					"us-west3",
+					"us-west4",
+					"southamerica-east1",
+					"southamerica-west1",
+					"europe-central2",
+					"europe-north1",
+					"europe-southwest1",
+					"europe-west1",
+					"europe-west2",
+					"europe-west3",
+					"europe-west4",
+					"europe-west6",
+					"europe-west8",
+					"europe-west9",
+					"asia-east1",
+					"asia-east2",
+					"asia-northeast1",
+					"asia-northeast2",
+					"asia-northeast3",
+					"asia-southeast1",
+					"asia-south1",
+					"asia-south2",
+					"asia-southeast2",
+					"me-west1",
+					"australia-southeast1",
+					"australia-southeast2"
+				]
+			},
+			"StorageClass": {
+				"type": "string",
+				"enum": [
+					"standard",
+					"nearline",
+					"coldline",
+					"archive"
+				]
+			},
+			"BucketSettings": {
+				"properties": {
+					"allowed_file_types": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"size_limit": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"allowed_file_types",
+					"size_limit"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IBucket": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"object": {
+						"type": "string"
+					},
+					"created": {
+						"type": "number",
+						"format": "double"
+					},
+					"test": {
+						"type": "boolean"
+					},
+					"name": {
+						"type": "string"
+					},
+					"slug": {
+						"type": "string"
+					},
+					"user": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/BucketLocation"
+					},
+					"storage_class": {
+						"$ref": "#/components/schemas/StorageClass"
+					},
+					"settings": {
+						"$ref": "#/components/schemas/BucketSettings"
+					},
+					"metadata": {
+						"properties": {},
+						"additionalProperties": {},
+						"type": "object"
+					}
+				},
+				"required": [
+					"_id",
+					"id",
+					"object",
+					"created",
+					"test",
+					"name",
+					"slug",
+					"user",
+					"location",
+					"storage_class",
+					"settings",
+					"metadata"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_Expand_Pick_IBucket.name-or-location-or-storage_class-or-metadata___": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/BucketLocation"
+					},
+					"storage_class": {
+						"$ref": "#/components/schemas/StorageClass"
+					},
+					"metadata": {
+						"properties": {},
+						"additionalProperties": {},
+						"type": "object"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"BucketCreateRequest": {
+				"$ref": "#/components/schemas/Partial_Expand_Pick_IBucket.name-or-location-or-storage_class-or-metadata___"
+			},
+			"ListResponse_IBucket_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"has_more": {
+						"type": "boolean"
+					},
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/IBucket"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"total",
+					"has_more",
+					"page",
+					"data"
+				],
+				"type": "object"
+			},
+			"BucketListResponse": {
+				"$ref": "#/components/schemas/ListResponse_IBucket_"
+			},
+			"Partial_Expand_Pick_IBucket.name-or-metadata___": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"metadata": {
+						"properties": {},
+						"additionalProperties": {},
+						"type": "object"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"BucketUpdateRequest": {
+				"$ref": "#/components/schemas/Partial_Expand_Pick_IBucket.name-or-metadata___"
+			},
+			"IFile": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"object": {
+						"type": "string"
+					},
+					"created": {
+						"type": "number",
+						"format": "double"
+					},
+					"test": {
+						"type": "boolean"
+					},
+					"user": {
+						"type": "string"
+					},
+					"bucket": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/IBucket"
+							}
+						]
+					},
+					"type": {
+						"type": "string"
+					},
+					"size": {
+						"type": "number",
+						"format": "double"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"extension": {
+						"type": "string"
+					},
+					"restricted": {
+						"type": "boolean"
+					},
+					"url": {
+						"type": "string"
+					},
+					"metadata": {
+						"properties": {},
+						"additionalProperties": {},
+						"type": "object"
+					}
+				},
+				"required": [
+					"_id",
+					"id",
+					"object",
+					"created",
+					"test",
+					"user",
+					"bucket",
+					"type",
+					"size",
+					"filename",
+					"extension",
+					"restricted",
+					"url",
+					"metadata"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_Expand_Pick_IFile.filename-or-restricted___": {
+				"properties": {
+					"filename": {
+						"type": "string"
+					},
+					"restricted": {
+						"type": "boolean"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"FileCreateRequest": {
+				"$ref": "#/components/schemas/Partial_Expand_Pick_IFile.filename-or-restricted___"
+			},
+			"ListResponse_IFile_": {
+				"properties": {
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"has_more": {
+						"type": "boolean"
+					},
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/IFile"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"total",
+					"has_more",
+					"page",
+					"data"
+				],
+				"type": "object"
+			},
+			"FileListResponse": {
+				"$ref": "#/components/schemas/ListResponse_IFile_"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "api",
+		"version": "0.0.0",
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/buckets": {
+			"post": {
+				"operationId": "buckets_create",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IBucket"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"summary": "Create bucket",
+				"tags": [
+					"Buckets",
+					"Buckets"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": false,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BucketCreateRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "buckets_list",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BucketListResponse"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"summary": "List buckets",
+				"tags": [
+					"Buckets",
+					"Buckets"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "expand",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/buckets/{id}": {
+			"get": {
+				"operationId": "buckets_retrieve",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IBucket"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"summary": "Retrieve bucket",
+				"tags": [
+					"Buckets",
+					"Buckets"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "expand",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "buckets_update",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IBucket"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"summary": "Update bucket",
+				"tags": [
+					"Buckets",
+					"Buckets"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": false,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BucketUpdateRequest"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "buckets_delete",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IBucket"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"summary": "Delete bucket",
+				"tags": [
+					"Buckets",
+					"Buckets"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/files": {
+			"post": {
+				"operationId": "files_create",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IFile"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"summary": "Create file",
+				"tags": [
+					"Files",
+					"Files"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "bucket",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "restricted",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": false,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/FileCreateRequest"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "files_list",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/FileListResponse"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					}
+				},
+				"summary": "List files",
+				"tags": [
+					"Files",
+					"Files"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sort",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "expand",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/files/{id}": {
+			"get": {
+				"operationId": "files_retrieve",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IFile"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"summary": "Retrieve file",
+				"tags": [
+					"Files",
+					"Files"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "expand",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "files_delete",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IFile"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"summary": "Delete file",
+				"tags": [
+					"Files",
+					"Files"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"description": "develop",
+			"url": "http://localhost:7000/v1"
+		},
+		{
+			"description": "staging",
+			"url": "https://staging-api.bucket.co/v1"
+		},
+		{
+			"description": "production",
+			"url": "https://api.bucket.co/v1"
+		}
+	]
+}

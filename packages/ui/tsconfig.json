@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig/react-library.json",
+  "include": ["."],
+  "compilerOptions": {
+    "lib": [
+      "DOM"
+    ]
+  },
+  "exclude": ["node_modules"]
+}

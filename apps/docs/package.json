@@ -1,0 +1,10 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx mintlify dev --port 4000"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

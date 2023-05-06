@@ -1,0 +1,23 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "repository": "https://github.com/hyper/zippin.git",
+  "author": "Zippin <support@zippin.dev> (https://zippin.dev)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "util": "doppler run -- node -r esbuild-register"
+  },
+  "dependencies": {
+    "lib": "*",
+    "knex": "^2.4.2",
+    "pg": "^8.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "eslint": "8.22.0",
+    "eslint-config-bucket": "*",
+    "tsconfig": "*",
+    "typescript": "^4.9.5"
+  }
+}

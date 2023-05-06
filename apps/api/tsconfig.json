@@ -1,0 +1,13 @@
+{
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "lib": ["ES2019"],
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "src",
+    "typeRoots": ["node_modules/@types", "src/types", "../../packages/types"]
+  },
+  "include": ["."],
+  "exclude": ["node_modules"]
+}
